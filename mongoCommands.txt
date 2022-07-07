@@ -79,13 +79,13 @@ db.movies.insertMany([
 
 
 
-db.movies.find( { "directors": "Christopher Nolan" } )
+db.movies.find( { directors: "Christopher Nolan" } )
 
-db.movies.find( { "released": { $lt: ISODate("2000-01-01") } } )    Movies that released befor 2000-01-01, $lt for less than
+db.movies.find( { released: { $lt: ISODate("2000-01-01") } } )    Movies that released befor 2000-01-01, $lt for less than
 
-db.movies.find( { "awards.wins": { $gt: 100 } } );
+db.movies.find( { awards.wins: { $gt: 100 } } );
 
-db.movies.find( { "languages": { $in: [ "Japanese", "Mandarin" ] } } )
+db.movies.find( { languages: { $in: [ "Japanese", "Mandarin" ] } } )
 
 db.movies.find( { }, { "title": 1, "directors": 1, "year": 1 } )
 
@@ -106,4 +106,23 @@ $sort to sort the resulting documents by the genreCount field in descending orde
 
 
 
-.............................
+db.myColl.updateOne({x : 1}, {$set: {x : 2}})         find({filter}, {$set {}}) updates first matched
+
+
+db.myColl.insertMany([
+    { p : 1, 
+      q : 2
+    },
+    { p : 1, 
+      q : 4
+    }
+])
+
+
+db.myColl.updateMany({p : 1}, {$set: {q : 6}})    update all matched
+
+db.myColl.deleteOne({p : 1})
+
+db.myColl.deleteMany({p : 1})
+
+
