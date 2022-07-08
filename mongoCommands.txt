@@ -125,4 +125,38 @@ db.myColl.deleteOne({p : 1})
 
 db.myColl.deleteMany({p : 1})
 
+ 
+SQL equivalent Mongo commands
+
+1. 
+SELECT * FROM inventory
+db.inventory.find( {} )
+
+2.
+SELECT * FROM inventory WHERE status = "D"
+db.inventory.find( { status: "D" } )
+
+3.
+SELECT * FROM inventory WHERE status in ("A", "D")
+db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+
+4.
+SELECT * FROM inventory WHERE status = "A" AND qty < 30
+db.inventory.find( { status: "A", qty: { $lt: 30 } } )
+
+5.
+SELECT * FROM inventory WHERE status = "A" OR qty < 30
+db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+
+6.
+SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
+db.inventory.find( {
+     status: "A",
+     $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )
+
+
+
+
+
 
